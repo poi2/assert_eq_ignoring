@@ -6,7 +6,7 @@
 ///
 /// # Syntax
 ///
-/// `assert_eq_ignoring!(actual_value, expected_value, field1, field2, ...);`
+/// `assert_eq_excluding!(actual_value, expected_value, field1, field2, ...);`
 ///
 /// - `actual_value`: The actual value to compare.
 /// - `expected_value`: The expected value to compare against.
@@ -49,7 +49,7 @@
 /// let user2 = User::new(1, "Alice".to_string(), 8);
 ///
 /// // Compare user1 and user2, ignoring the `age` field
-/// assert_eq_ignoring!(user1, user2, age); // This will pass
+/// assert_eq_excluding!(user1, user2, age); // This will pass
 /// ```
 ///
 /// # Panics
@@ -65,7 +65,7 @@
 /// crate, which can automatically generate setter methods for your fields. This helps ensure consistency and
 /// reduces boilerplate code.
 #[macro_export]
-macro_rules! assert_eq_ignoring {
+macro_rules! assert_eq_excluding {
     ($actual:expr, $expect:expr, $($field:ident),+) => {{
         let mut actual_clone = $actual.clone();
         let mut expect_clone = $expect.clone();
@@ -81,7 +81,7 @@ macro_rules! assert_eq_ignoring {
                 stringify!($field),
             )+
         ];
-        let description = $crate::impls::assert_eq_ignoring::description(None, fields);
+        let description = $crate::impls::assert_eq_excluding::description(None, fields);
 
         assert_eq!(actual_clone, expect_clone, "{}", description);
     }};
