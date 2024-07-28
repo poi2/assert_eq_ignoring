@@ -1,8 +1,6 @@
 [package]
 name = "selective_assertions"
-description = """
-`selective_assertions` is a macro designed for asserting equality of structs while allowing specified fields to be excluded.
-"""
+description = "Macros for asserting equality of structs with the flexibility to exclude or focus on specific fields."
 version = "0.1.0"
 edition = "2021"
 authors = ["Daisuke Ito <daisuke.ito.cs@gmail.com>"]
