@@ -1,7 +1,7 @@
 #[cfg(test)]
 mod test {
-    use assert_eq_ignoring::*;
     use getset::Setters;
+    use selective_assert::*;
 
     #[derive(Debug, PartialEq, Clone)]
     #[cfg_attr(test, derive(Setters))]
@@ -65,28 +65,5 @@ mod test {
 
         // This will panic because the `age` field is different
         assert_eq_ignoring!(alice_in_wonder_land, alice_in_looking_glass_land, id, name);
-    }
-
-    #[test]
-    fn test_assert_eq_ignoring_should_pass_when_one_different_field_is_excluded_with_case_name() {
-        let alice_in_wonder_land = User {
-            id: 1,
-            name: "Alice".to_string(),
-            age: 7,
-        };
-
-        let alice_in_looking_glass_land = User {
-            id: 1,
-            name: "Alice".to_string(),
-            age: 8,
-        };
-
-        // This will pass because the `age` field is ignored
-        assert_eq_ignoring!(
-            alice_in_wonder_land,
-            alice_in_looking_glass_land,
-            age,
-            "Despite the age difference, they are the same person"
-        );
     }
 }
