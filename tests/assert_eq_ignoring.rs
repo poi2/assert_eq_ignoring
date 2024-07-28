@@ -1,7 +1,7 @@
 #[cfg(test)]
 mod test {
     use getset::Setters;
-    use selective_assert::*;
+    use selective_assertions::*;
 
     #[derive(Debug, PartialEq, Clone)]
     #[cfg_attr(test, derive(Setters))]

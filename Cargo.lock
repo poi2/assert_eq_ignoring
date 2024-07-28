@@ -74,7 +74,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "selective_assert"
+name = "selective_assertions"
 version = "0.1.0"
 dependencies = [
  "derive-getters",

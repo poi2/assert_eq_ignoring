@@ -18,7 +18,7 @@
 /// Suppose you have a struct `User` with fields `id`, `name`, and `age`, and you want to compare only the `id` and `name` fields:
 ///
 /// ```rust
-/// use selective_assert::*;
+/// use selective_assertions::*;
 ///
 /// #[derive(Debug)]
 /// pub struct User {
