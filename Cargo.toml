@@ -1,7 +1,7 @@
 [package]
-name = "assert_eq_ignoring"
+name = "selective_assert"
 description = """
-`assert_eq_ignoring` is a macro designed for asserting equality of structs while allowing specified fields to be excluded.
+`selective_assert` is a macro designed for asserting equality of structs while allowing specified fields to be excluded.
 """
 version = "0.1.0"
 edition = "2021"
@@ -9,10 +9,11 @@ authors = ["Daisuke Ito <daisuke.ito.cs@gmail.com>"]
 license = "MIT"
 keywords = ["macro", "test", "testing", "assertions", "assert"]
 readme = "README.md"
-repository = "https://github.com/poi2/assert_eq_ignoring"
+repository = "https://github.com/poi2/selective_assert"
 
 [dependencies]
 paste = "1.0.15"
 
 [dev-dependencies]
 getset = "0.1.2"
+derive-getters = "0.4.0"
