@@ -12,7 +12,7 @@ mod test {
     }
 
     #[test]
-    fn test_assert_eq_only_should_pass_when_selects_same_one_field() {
+    fn test_assert_eq_selected_should_pass_when_selects_same_one_field() {
         let alice_in_wonder_land = User {
             id: 1,
             name: "Alice".to_string(),
@@ -26,11 +26,11 @@ mod test {
         };
 
         // This will pass because the `id` is the same
-        assert_eq_only!(alice_in_wonder_land, alice_in_looking_glass_land, id);
+        assert_eq_selected!(alice_in_wonder_land, alice_in_looking_glass_land, id);
     }
 
     #[test]
-    fn test_assert_eq_only_should_pass_when_selects_same_some_fields() {
+    fn test_assert_eq_selected_should_pass_when_selects_same_some_fields() {
         let alice_in_wonder_land = User {
             id: 1,
             name: "Alice".to_string(),
@@ -44,12 +44,12 @@ mod test {
         };
 
         // This will pass because the `id` and `name` are the same
-        assert_eq_only!(alice_in_wonder_land, alice_in_looking_glass_land, id, name);
+        assert_eq_selected!(alice_in_wonder_land, alice_in_looking_glass_land, id, name);
     }
 
     #[should_panic]
     #[test]
-    fn test_assert_eq_only_should_fail_when_selects_fields_has_with_some_different_values() {
+    fn test_assert_eq_selected_should_fail_when_selects_fields_has_with_some_different_values() {
         let alice_in_wonder_land = User {
             id: 1,
             name: "Alice".to_string(),
@@ -63,7 +63,7 @@ mod test {
         };
 
         // This will pass because the `age` is different
-        assert_eq_only!(
+        assert_eq_selected!(
             alice_in_wonder_land,
             alice_in_looking_glass_land,
             id,

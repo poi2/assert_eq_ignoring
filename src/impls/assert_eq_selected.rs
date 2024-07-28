@@ -5,8 +5,8 @@
 ///
 /// # Syntax
 ///
-/// `assert_eq_only!(actual_value, expected_value, field1, field2, ...);`
-/// `assert_eq_only!(actual_value, expected_value, field1, field2, ..., case_name);`
+/// `assert_eq_selected!(actual_value, expected_value, field1, field2, ...);`
+/// `assert_eq_selected!(actual_value, expected_value, field1, field2, ..., case_name);`
 ///
 /// - `actual_value`: The actual value to compare.
 /// - `expected_value`: The expected value to compare against.
@@ -45,14 +45,14 @@
 /// let user2 = User { id: 1, name: String::from("Alice"), age: 8 };
 ///
 /// // Compare user1 and user2, focusing only on the `id` and `name` fields
-/// assert_eq_only!(user1, user2, name); // This will pass
+/// assert_eq_selected!(user1, user2, name); // This will pass
 /// ```
 ///
 /// # Panics
 ///
 /// This macro will panic if the specified fields of the actual and expected values are not equal.
 #[macro_export]
-macro_rules! assert_eq_only {
+macro_rules! assert_eq_selected {
     ($actual:expr, $expect:expr, $($field:ident),+) => {{
         $(
             assert_eq!($actual.$field(), $expect.$field(), "Field `{}` does not match", stringify!($field));
