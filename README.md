@@ -1,6 +1,6 @@
-# selective_assert
+# selective_assertions
 
-`selective_assert` is a Rust crate that provides macros for flexible assertions in tests. It includes `assert_eq_ignoring` and `assert_eq_only`, which allow you to compare complex structures while ignoring specified fields or only comparing specified fields.
+`selective_assertions` is a Rust crate that provides macros for flexible assertions in tests. It includes `assert_eq_ignoring` and `assert_eq_only`, which allow you to compare complex structures while ignoring specified fields or only comparing specified fields.
 
 ## Features
 
@@ -11,11 +11,11 @@
 
 ### Installation
 
-Add `selective_assert` to your `Cargo.toml`:
+Add `selective_assertions` to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-selective_assert = "0.1.0"
+selective_assertions = "0.1.0"
 ```
 
 ## Usage
@@ -25,7 +25,7 @@ selective_assert = "0.1.0"
 The assert_eq_ignoring macro allows you to assert that two values are equal while ignoring specified fields. This is useful for comparing complex structures where certain fields may differ but are not relevant to the equality check.
 
 ```rust
-use selective_assert::*;
+use selective_assertions::*;
 use getset::Setters;
 
 // Debug and PartialEq required for assert_eq!
@@ -57,7 +57,7 @@ fn main() {
 The assert_eq_only macro allows you to assert that specific fields of two values are equal. This is useful for focusing on comparing only the specified fields without needing to compare the entire struct or object.
 
 ```rust
-use selective_assert::*;
+use selective_assertions::*;
 
 struct User {
     id: u32,

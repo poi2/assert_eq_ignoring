@@ -1,7 +1,7 @@
 #[cfg(test)]
 mod test {
     use derive_getters::Getters;
-    use selective_assert::*;
+    use selective_assertions::*;
 
     #[derive(Debug, PartialEq, Clone)]
     #[cfg_attr(test, derive(Getters))]
@@ -47,7 +47,7 @@ mod test {
         assert_eq_only!(alice_in_wonder_land, alice_in_looking_glass_land, id, name);
     }
 
-    // #[should_panic]
+    #[should_panic]
     #[test]
     fn test_assert_eq_only_should_fail_when_selects_fields_has_with_some_different_values() {
         let alice_in_wonder_land = User {

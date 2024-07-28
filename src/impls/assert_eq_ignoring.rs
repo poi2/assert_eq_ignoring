@@ -18,7 +18,7 @@
 /// to compare two `User` instances while ignoring the `age` field:
 ///
 /// ```rust
-/// use selective_assert::*;
+/// use selective_assertions::*;
 ///
 /// #[derive(Debug, PartialEq, Clone)]
 /// pub struct User {

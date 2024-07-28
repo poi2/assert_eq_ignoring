@@ -1,7 +1,7 @@
 [package]
-name = "selective_assert"
+name = "selective_assertions"
 description = """
-`selective_assert` is a macro designed for asserting equality of structs while allowing specified fields to be excluded.
+`selective_assertions` is a macro designed for asserting equality of structs while allowing specified fields to be excluded.
 """
 version = "0.1.0"
 edition = "2021"
@@ -9,7 +9,7 @@ authors = ["Daisuke Ito <daisuke.ito.cs@gmail.com>"]
 license = "MIT"
 keywords = ["macro", "test", "testing", "assertions", "assert"]
 readme = "README.md"
-repository = "https://github.com/poi2/selective_assert"
+repository = "https://github.com/poi2/selective_assertions"
 
 [dependencies]
 paste = "1.0.15"
