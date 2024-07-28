@@ -13,9 +13,10 @@
 
 Add `selective_assert` to your `Cargo.toml`:
 
-````toml
+```toml
 [dependencies]
 selective_assert = "0.1.0"
+```
 
 ## Usage
 
@@ -83,4 +84,3 @@ fn main() {
 
 This project is licensed under the MIT License.
 For more information on the license, please see the <a href="LICENSE">license</a>.
-````
