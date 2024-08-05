@@ -3,8 +3,7 @@ mod test {
     use derive_getters::Getters;
     use selective_assertions::*;
 
-    #[derive(Debug, PartialEq, Clone)]
-    #[cfg_attr(test, derive(Getters))]
+    #[derive(Debug, PartialEq, Getters)]
     struct User {
         id: u32,
         name: String,

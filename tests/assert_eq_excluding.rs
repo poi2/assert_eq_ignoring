@@ -1,11 +1,11 @@
 #[cfg(test)]
 mod test {
+    use derive_getters::Getters;
     use getset::Setters;
     use selective_assertions::*;
 
-    #[derive(Debug, PartialEq, Clone)]
-    #[cfg_attr(test, derive(Setters))]
-    #[cfg_attr(test, set = "pub")]
+    #[derive(Debug, PartialEq, Clone, Getters, Setters)]
+    #[set = "pub"]
     struct User {
         id: u32,
         name: String,
@@ -26,7 +26,7 @@ mod test {
             age: 8,
         };
 
-        // This will pass because the `age` field is ignored
+        // This will pass because the `age` field is excluded
         assert_eq_excluding!(alice_in_wonder_land, alice_in_looking_glass_land, age);
     }
 
@@ -44,7 +44,7 @@ mod test {
             age: 16,
         };
 
-        // This will pass because the `id` and `name` fields are ignored
+        // This will pass because the `id` and `name` fields are excluded
         assert_eq_excluding!(classmate1, classmate2, id, name);
     }
 
