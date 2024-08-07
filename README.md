@@ -15,7 +15,7 @@ Add `selective_assertions` to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-selective_assertions = "0.1.0"
+selective_assertions = "0.3.0"
 ```
 
 ## Usage
