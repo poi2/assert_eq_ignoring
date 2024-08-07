@@ -1,8 +1,10 @@
-/// Asserts that two values are equal, ignoring the specified fields.
+/// Asserts that two values are equal, excluding the specified fields.
 ///
-/// The fields listed in the macro are set to their default values before performing
-/// the equality check. This allows you to assert that all other fields are equal
-/// while ignoring the specified ones.
+/// The fields listed in the macro are set to the values copied from the expected
+/// value before performing the equality check.
+///
+/// This allows you to assert that all　other fields are equal while excluding　the
+/// specified ones.
 ///
 /// # Syntax
 ///
@@ -10,69 +12,52 @@
 ///
 /// - `actual_value`: The actual value to compare.
 /// - `expected_value`: The expected value to compare against.
-/// - `field1, field2, ...`: The names of the fields to ignore during the comparison.
+/// - `field1, field2, ...`: The names of the fields to exclude during the comparison.
 ///
 /// # Example
 ///
-/// Suppose you have a struct `User` with fields `id`, `name`, and `age`, and you want
-/// to compare two `User` instances while ignoring the `age` field:
+/// If you want to compare two `User` instances while excluding the `age` as follows:
+///
+/// `assert_eq_excluding!(user1, user2, age);`
 ///
 /// ```rust
+/// use derive_getters::Getters;
+/// use getset::Setters;
 /// use selective_assertions::*;
 ///
-/// #[derive(Debug, PartialEq, Clone)]
+/// #[derive(Debug, PartialEq, Clone, Getters, Setters)]
+/// #[set = "pub"]
 /// pub struct User {
 ///     id: u32,
 ///     name: String,
 ///     age: u8,
 /// }
 ///
-/// impl User {
-///     pub fn new(id: u32, name: String, age: u8) -> Self {
-///         User { id, name, age }
-///     }
+/// let user1 = User { id: 1, name: "Alice".to_string(), age: 7 };
+/// let user2 = User { id: 1, name: "Alice".to_string(), age: 8 };
 ///
-///     pub fn set_id(&mut self, id: u32) {
-///         self.id = id;
-///     }
-///
-///     pub fn set_name(&mut self, name: String) {
-///         self.name = name;
-///     }
-///
-///     pub fn set_age(&mut self, age: u8) {
-///         self.age = age;
-///     }
-/// }
-///
-/// let user1 = User::new(1, "Alice".to_string(), 7);
-/// let user2 = User::new(1, "Alice".to_string(), 8);
-///
-/// // Compare user1 and user2, ignoring the `age` field
+/// // Compare user1 and user2, excluding the `age` field
 /// assert_eq_excluding!(user1, user2, age); // This will pass
 /// ```
 ///
 /// # Panics
 ///
-/// This macro will panic if the actual and expected values are not equal when ignoring the specified fields.
+/// This macro will panic if the actual and expected values are not equal when excluding
+/// the specified fields.
 ///
 /// # Note
 ///
-/// The macro assumes that the struct implements a `set_<field_name>` method to set fields to their default values.
-/// Ensure that such methods are available and properly implemented for the fields you want to ignore.
+/// The macro requires getter and setter methods.
 ///
-/// For convenience and to avoid manually writing setter methods, it is recommended to use the `getset::Setters`
-/// crate, which can automatically generate setter methods for your fields. This helps ensure consistency and
-/// reduces boilerplate code.
+/// It is recommended to use `derive_getters::Getters` and `getset::Setters` crates.
 #[macro_export]
 macro_rules! assert_eq_excluding {
     ($actual:expr, $expect:expr, $($field:ident),+) => {{
         let mut actual_clone = $actual.clone();
-        let mut expect_clone = $expect.clone();
         $(
             paste! {
-                actual_clone.[<set_ $field>](Default::default());
-                expect_clone.[<set_ $field>](Default::default());
+                let value = $expect.[<$field>]().clone();
+                actual_clone.[<set_ $field>](value);
             }
         )+
 
@@ -83,7 +68,7 @@ macro_rules! assert_eq_excluding {
         ];
         let description = $crate::impls::assert_eq_excluding::description(None, fields);
 
-        assert_eq!(actual_clone, expect_clone, "{}", description);
+        assert_eq!(actual_clone, $expect, "{}", description);
     }};
 }
 

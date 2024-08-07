@@ -1,7 +1,7 @@
 [package]
 name = "selective_assertions"
 description = "Macros for asserting equality of structs with the flexibility to exclude or focus on specific fields."
-version = "0.2.0"
+version = "0.3.0"
 edition = "2021"
 authors = ["Daisuke Ito <daisuke.ito.cs@gmail.com>"]
 license = "MIT"
@@ -13,5 +13,5 @@ repository = "https://github.com/poi2/selective_assertions"
 paste = "1.0.15"
 
 [dev-dependencies]
-getset = "0.1.2"
 derive-getters = "0.4.0"
+getset = "0.1.2"
