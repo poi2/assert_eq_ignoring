@@ -60,7 +60,11 @@ jobs:
   test_on_nightly:
     name: Rust test on nightly
     needs: test_on_stable
-    runs-on: ubuntu-latest
+    runs-on: ${{matrix.os}}-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu]
     steps:
       # Prepare
       - uses: actions/checkout@v4
